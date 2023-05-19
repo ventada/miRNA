@@ -1,0 +1,314 @@
+:root {
+  --color--A: #389f61;
+  --color--C: #d89909;
+  --color--G: #7550a5;
+  --color--U: #1977d0;
+  --color--T: #dddd;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(236, 236, 238); */
+  overflow: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.75fr 6fr 2fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.75fr 6fr 2fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+header {
+  grid-template-columns: header;
+  background-color: #0f0f0f;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+}
+header a {
+  padding: 10px 20px;
+  background-color: rgb(80, 98, 255);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+header button {
+  /* align-self: flex-end; */
+}
+main {
+  grid-template-columns: main;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+main .sequence {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.sequence.selected {
+  background-color: #96909078;
+  padding: 8px;
+  border-radius: 2px;
+  perspective: 10000;
+  transform: translateZ(15px);
+}
+.sequence span {
+  width: 25px;
+  height: 25px;
+  border-radius: 1px;
+  background-color: #eee;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 2px #5e5e5e;
+}
+.sequence span.A {
+  background-color: var(--color--A);
+}
+.sequence span.TT {
+  transform: scale(1.2);
+  box-shadow: 1px 1px 2px 2px #494848;
+}
+.sequence span.C {
+  background-color: var(--color--C);
+}
+.sequence span.G {
+  background-color: var(--color--G);
+}
+.sequence span.U {
+  background-color: var(--color--U);
+}
+footer {
+  grid-template-columns: footer;
+  background-color: blueviolet;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr 2fr 3fr;
+  grid-template-areas: "userinfo controller alg";
+
+  /* overflow: hidden; */
+}
+
+footer .userinfo {
+  grid-area: userinfo;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+footer .controller {
+  grid-area: controller;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer .controller .controller-container {
+  width: 175px;
+  height: 175px;
+  background-color: #bebbbb;
+  border: 1px 1px solid transparent;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "delete up reverse"
+    "left add right"
+    ". downbtn .";
+
+  background-color: #ddd;
+  border-radius: 50%;
+  padding: 18px;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15) inset,
+    0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+}
+.controller-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+.controller-container div img {
+  width: 15px;
+  transition: all 0.5s;
+  height: 15px;
+  cursor: pointer;
+}
+.controller-container div img:hover {
+  transform: scale(1.1);
+}
+
+.game-up-btn {
+  grid-area: up;
+}
+.game-delete-btn {
+  grid-area: delete;
+}
+.game-reverse-btn {
+  grid-area: reverse;
+}
+.game-left-btn {
+  grid-area: left;
+}
+.game-right-btn {
+  grid-area: right;
+}
+.game-down-btn {
+  grid-area: downbtn;
+}
+.game-add-btn {
+  grid-area: add;
+}
+
+footer .alg {
+  grid-area: alg;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 5px 35px;
+}
+.alg .sequence {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+}
+.alg-sub {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alg-detail {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 15px;
+}
+.alg-detail img {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 15px;
+  height: 15px;
+}
+.alg-detail img:hover {
+  transform: scale(1.2);
+}
+.container {
+  background-color: white;
+  padding: 1rem 3rem;
+  padding-bottom: 2rem;
+  border-radius: 0.5rem;
+  border-top: rgb(80, 98, 255) 0.5rem solid;
+}
+
+h2 {
+  margin: 1rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+input {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+  font-size: 1.1rem;
+}
+
+button {
+  background-color: rgb(80, 98, 255);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+
+span a {
+  text-decoration: none;
+  color: rgb(80, 98, 255);
+}
+
+.private {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(80, 98, 255);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 3rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.private button {
+  background-color: black;
+  padding: 2rem 10rem;
+  font-size: 4rem;
+  border-radius: 2rem;
+}
