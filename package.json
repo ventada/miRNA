@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "mirna",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,6 +22,10 @@
     "mongoose": "^7.1.0",
     "nodemon": "^2.0.22"
   },
+  "bugs": {
+    "url": "https://github.com/cyclic-software/starter-express-api/issues"
+  },
+  "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "devDependencies": {
     "concurrently": "^8.0.1"
   }
