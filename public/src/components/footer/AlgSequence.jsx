@@ -80,6 +80,7 @@ export default function AlgSequence({
   };
 
   const onClickHandler = async (action) => {
+    dispatch(userActions.isScoreChanged());
     switch (action) {
       case "confirm":
         confirmMotif();

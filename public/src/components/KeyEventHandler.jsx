@@ -59,10 +59,10 @@ export default function KeyEventHandler() {
         submiteAction("down");
         dispatch(sequenceAction.swapWithBottomRow());
         break;
-      case "KeyR":
-        submiteAction("reverse");
-        dispatch(sequenceAction.reverseCurrentSequence());
-        break;
+      // case "KeyR":
+      //   submiteAction("reverse");
+      //   dispatch(sequenceAction.reverseCurrentSequence());
+      //   break;
       case "Delete":
         submiteAction("Delete");
         dispatch(sequenceAction.deleteCurrentSequence());

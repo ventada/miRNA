@@ -4,6 +4,7 @@ const initialState = {
   username: "",
   userRank: "",
   userScore: 0,
+  isScoreChanged: false,
 };
 
 const userSlice = createSlice({
@@ -15,6 +16,9 @@ const userSlice = createSlice({
     },
     setNewScore(state, action) {
       state.userScore = action.payload;
+    },
+    isScoreChanged(state, action) {
+      state.isScoreChanged = !state.isScoreChanged;
     },
   },
 });

@@ -34,14 +34,16 @@ export default function Main() {
     let response = await restoreUserProgress();
     console.log(response);
     if (!response) {
-      const { data } = await axios.get("/sequence/random");
+      for (let i = 0; i < 3; i++) {
+        const { data } = await axios.get("/sequence/random");
 
-      // return console.log(data.sequence["sequence"]);
-      let _seq = seqGenerator(data.sequence);
+        // return console.log(data.sequence["sequence"]);
+        let _seq = seqGenerator(data.sequence);
 
-      // setSeqArray((prevState) => [...prevState, _seq]);
-      dispatch(sequenceAction.addSequence(_seq));
-      dispatch(sequenceAction.setCurrentIndex(1));
+        // setSeqArray((prevState) => [...prevState, _seq]);
+        dispatch(sequenceAction.addSequence(_seq));
+        dispatch(sequenceAction.setCurrentIndex(i));
+      }
     } else {
       // dispatch(motifActions.setExcludeMotif(response.motifExclusionArray));
       for (const i of response.sequenceArray) {
