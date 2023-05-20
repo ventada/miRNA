@@ -12,7 +12,8 @@ export default function Sequence({ sequence, id }) {
     return (
       <>
         {sequence.map((seq) => (
-          <span className={seq}>{seq}</span>
+          // <span className={seq}>{seq}</span>
+          <span className={seq}></span>
         ))}
       </>
     );

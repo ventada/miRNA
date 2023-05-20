@@ -79,10 +79,11 @@ function ControllerPart(props) {
           src={props.src}
           alt="icon"
           data-action={props.action}
+          title={props.action}
           onClick={(e) => handleActions(e.target.getAttribute("data-action"))}
         />
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </>
   );
 }
