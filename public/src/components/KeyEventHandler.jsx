@@ -25,7 +25,9 @@ export default function KeyEventHandler() {
   };
   const handleKeysEvent = useCallback((e) => {
     let code = e.code;
-
+    if (code !== "ArrowDown" && code !== "ArrowUp") {
+      dispatch(sequenceAction.isSequenceChanged(true));
+    }
     switch (code) {
       case "ArrowDown":
         dispatch(sequenceAction.moveCurrentIndexDown());

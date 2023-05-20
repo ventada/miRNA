@@ -13,7 +13,7 @@ export default function Alg() {
   const dispatch = useDispatch();
 
   const findMax = (mot) => {
-    console.log("this is not sorted", mot);
+    // console.log("this is not sorted", mot);
 
     if (!mot[0]) return;
     mot.sort((a, b) => {
@@ -22,7 +22,7 @@ export default function Alg() {
 
       return 0;
     });
-    console.log("this is sorted", mot);
+    // console.log("this is sorted", mot);
 
     setsortedMotif(mot);
     extractSequence(mot);
@@ -42,12 +42,12 @@ export default function Alg() {
       });
     }
 
-    console.log("this is from temp", temp);
+    // console.log("this is from temp", temp);
     setSequences(temp);
   };
 
   useEffect(() => {
-    console.log("this is motifs", motifs);
+    // console.log("this is motifs", motifs);
     if (motifs.length === 0) {
       setSequences([]);
       return;

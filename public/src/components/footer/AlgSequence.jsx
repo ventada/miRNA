@@ -62,7 +62,6 @@ export default function AlgSequence({
   //   };
 
   const confirmMotif = async () => {
-    console.log("flag", flagsForRevers);
     try {
       let { data } = await axios.post(
         "/motifs/submitscore",
@@ -89,7 +88,6 @@ export default function AlgSequence({
 
         break;
       case "reject":
-        console.log(sequence);
         dispatch(motifActions.excludeMotif(sequence.join("").toString()));
         break;
 

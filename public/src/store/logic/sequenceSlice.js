@@ -652,8 +652,12 @@ const sequenceSlice = createSlice({
     ],
     currentIndex: 0,
     flagsForRevers: [],
+    isSequenceChanged: false,
   },
   reducers: {
+    isSequenceChanged(state, action) {
+      state.isSequenceChanged = action.payload;
+    },
     addSequence(state, action) {
       if (state.sequenceArray.length === 10) return;
       state.sequenceArray.push(action.payload);

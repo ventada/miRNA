@@ -39,6 +39,8 @@ function ControllerPart(props) {
 
     submiteAction(action);
 
+    dispatch(sequenceAction.isSequenceChanged(true));
+
     switch (action) {
       case "reverse":
         dispatch(sequenceAction.reverseCurrentSequence());

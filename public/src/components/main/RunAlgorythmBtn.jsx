@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { shrinkMatrix } from "../../utils/SequenceHandler";
 
 import { motifActions } from "../../store/logic/motifsSlice";
-
+import { sequenceAction } from "../../store/logic/sequenceSlice";
 import findMotif, {
   extractMotifsOccurrence,
   fuzzyengine,
@@ -13,6 +13,9 @@ export default function RunAlgorythmBtn() {
   // const [shrinkedMatrix, setshrinkedMatrix] = useState([]);
   const dispatch = useDispatch();
   const sequenceMatrix = useSelector((state) => state.sequence.sequenceArray);
+  const isSequenceChanged = useSelector(
+    (state) => state.sequence.isSequenceChanged
+  );
   const flagsForRevers = useSelector((state) => state.sequence.flagsForRevers);
   const motifExclusionArray = useSelector(
     (state) => state.motif.motifExclusionArray
@@ -20,12 +23,13 @@ export default function RunAlgorythmBtn() {
 
   useEffect(() => {
     // console.log(sequenceMatrix);
-    console.log("run alg runned aggain");
+    console.log("SequenceChanged");
     callAlg(true);
-  }, [sequenceMatrix]); // sequenceMatrix ham inja bood
+    dispatch(sequenceAction.isSequenceChanged(false));
+  }, [isSequenceChanged]); // sequenceMatrix ham inja bood
   useEffect(() => {
     // console.log(sequenceMatrix);
-    console.log("run alg runned aggain");
+    // console.log("run alg runned aggain");
     callAlg();
   }, [motifExclusionArray]); // sequenceMatrix ham inja bood
 
@@ -73,7 +77,7 @@ export default function RunAlgorythmBtn() {
     let foundMotifs = findMotif(sh, motifExclusionArray);
 
     let OccurrenceOfMotifs = extractMotifsOccurrence(foundMotifs);
-    console.log("Occu in runAlg", OccurrenceOfMotifs);
+    // console.log("Occu in runAlg", OccurrenceOfMotifs);
     let baseScoreArray = await getBaseScores(OccurrenceOfMotifs);
     let scoreArray = calculateScore(baseScoreArray, OccurrenceOfMotifs);
 
@@ -92,10 +96,10 @@ export default function RunAlgorythmBtn() {
   // ];
   const setAlgSequence_andGlobalState = (foundMotifs, scoreArray) => {
     let temp = [];
-    console.log("foundMotids in runAlg", foundMotifs);
+    // console.log("foundMotids in runAlg", foundMotifs);
     for (const el of foundMotifs) {
       if (temp.includes(el["motif"])) continue;
-      console.log("this is el", el, scoreArray);
+      // console.log("this is el", el, scoreArray);
       // search for the score
       for (const s of scoreArray) {
         if (s[0] === el["motif"]) {
