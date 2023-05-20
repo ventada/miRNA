@@ -8,7 +8,8 @@
     "server": "node index.js",
     "start": "node index.js",
     "client": "cd ./public/ && npm start --perfix frontend",
-    "dev": "concurrently \"npm run d\" \"npm run client\""
+    "dev": "concurrently \"npm run d\" \"npm run client\"",
+    "prod": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
