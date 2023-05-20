@@ -659,6 +659,9 @@ const sequenceSlice = createSlice({
       state.sequenceArray.push(action.payload);
       state.flagsForRevers.push(false);
     },
+    setSequenceEmpty(state, action) {
+      state.sequenceArray = [];
+    },
     setCurrentIndex(state, action) {
       state.currentIndex = action.payload;
     },

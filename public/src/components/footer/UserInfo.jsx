@@ -20,7 +20,7 @@ export default function UserInfo() {
   useEffect(() => {
     setUser(username);
     getUserScore_Rank();
-  }, []);
+  }, [bestScore]);
   return (
     <div className="userinfo">
       <div>userName: {user}</div>

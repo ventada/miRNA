@@ -30,6 +30,9 @@ const motifSlice = createSlice({
         action.payload
       );
     },
+    setExcludeMotifEmpty(state, action) {
+      state.motifExclusionArray = state.motifExclusionArray.splice(0, a.length);
+    },
   },
 });
 

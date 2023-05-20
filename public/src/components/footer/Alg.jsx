@@ -13,6 +13,8 @@ export default function Alg() {
   const dispatch = useDispatch();
 
   const findMax = (mot) => {
+    console.log("this is not sorted", mot);
+
     if (!mot[0]) return;
     mot.sort((a, b) => {
       if (a.score > b.score) return -1;
@@ -46,6 +48,10 @@ export default function Alg() {
 
   useEffect(() => {
     console.log("this is motifs", motifs);
+    if (motifs.length === 0) {
+      setSequences([]);
+      return;
+    }
     findMax([...motifs]);
   }, [motifs]);
   return (

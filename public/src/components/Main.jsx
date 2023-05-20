@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sequenceAction } from "../store/logic/sequenceSlice";
 import RunAlgorythmBtn from "./main/RunAlgorythmBtn";
 import { motifActions } from "../store/logic/motifsSlice";
+import KeyEventHandler from "./KeyEventHandler";
 export default function Main() {
   // const [seqArray, setSeqArray] = useState([]);
   // bring in the state
@@ -34,6 +35,7 @@ export default function Main() {
     console.log(response);
     if (!response) {
       const { data } = await axios.get("/sequence/random");
+
       // return console.log(data.sequence["sequence"]);
       let _seq = seqGenerator(data.sequence);
 
@@ -41,8 +43,7 @@ export default function Main() {
       dispatch(sequenceAction.addSequence(_seq));
       dispatch(sequenceAction.setCurrentIndex(1));
     } else {
-      console.log(response);
-      dispatch(motifActions.setExcludeMotif(response.motifExclusionArray));
+      // dispatch(motifActions.setExcludeMotif(response.motifExclusionArray));
       for (const i of response.sequenceArray) {
         let _seq = i;
 
@@ -55,6 +56,7 @@ export default function Main() {
   // get a random seq from server at the beggining
   useEffect(() => {
     getRandomsequence();
+
     // console.log("this is flag", flagsForRevers);
     // console.log("this is flag", seqArray);
     // console.log("currentIndex", currentIndex);
@@ -68,6 +70,7 @@ export default function Main() {
       ))}
 
       <h1>{currentIndex}</h1>
+      {/* <KeyEventHandler /> */}
     </main>
   );
 }

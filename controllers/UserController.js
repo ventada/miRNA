@@ -68,7 +68,6 @@ module.exports.saveUserProgress = async (req, res, next) => {
       {
         userId: decoded.id,
         sequenceArray,
-        motifExclusionArray,
       },
       { upsert: true, new: true }
     );
@@ -89,7 +88,7 @@ module.exports.restoreUserProgress = async (req, res, next) => {
 
     const dashboard = await userDashboardModel
       .findOne({ userId: decoded.id })
-      .select("motifExclusionArray sequenceArray");
+      .select(" sequenceArray");
 
     res.json(dashboard);
   } catch (err) {

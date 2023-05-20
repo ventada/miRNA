@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import Main from "../components/Main";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/logic/userSlice";
+import { sequenceAction } from "../store/logic/sequenceSlice";
 import KeyEventHandler from "../components/KeyEventHandler";
 
 export default function Secret() {
@@ -44,6 +45,7 @@ export default function Secret() {
   const logout = () => {
     removeCookie("jwt");
     navigate("/login");
+    dispatch(sequenceAction.setSequenceEmpty());
   };
   return (
     <>

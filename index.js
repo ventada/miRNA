@@ -24,19 +24,15 @@ app.use(express.json());
 
 app.use(coockieParser());
 
-// app.get("/", async (req, res) => {
-//   const a = await motifBaseScore.finde({ baseScore: 0.5, motif: "GGGG" });
-//   res.json(a);
-// });
 app.use("/auth", authRouter);
 app.use("/sequence", sequenceRouter);
 app.use("/motifs", motfiRouter);
 app.use("/actions", userRouter);
 
-app.use(express.static(path.join(__dirname, "./public/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/build/index.js"));
-});
+// app.use(express.static(path.join(__dirname, "./public/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./public/build/index.js"));
+// });
 
 const PORT = process.env.PORT || 4000;
 

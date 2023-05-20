@@ -20,9 +20,14 @@ export default function RunAlgorythmBtn() {
 
   useEffect(() => {
     // console.log(sequenceMatrix);
-    console.log("motifExclusionArray", motifExclusionArray);
+    console.log("run alg runned aggain");
+    callAlg(true);
+  }, [sequenceMatrix]); // sequenceMatrix ham inja bood
+  useEffect(() => {
+    // console.log(sequenceMatrix);
+    console.log("run alg runned aggain");
     callAlg();
-  }, [, motifExclusionArray]); // sequenceMatrix ham inja bood
+  }, [motifExclusionArray]); // sequenceMatrix ham inja bood
 
   const getBaseScores = async (motifs) => {
     let { data } = await axios.post("/motifs/basescore", {
@@ -46,14 +51,32 @@ export default function RunAlgorythmBtn() {
     return scores;
   };
 
-  const callAlg = async () => {
+  const submiteAction = async (action) => {
+    let res = await axios.post(
+      "/actions/submitaction",
+      {
+        action,
+      },
+      { withCredentials: true }
+    );
+    console.log(res.data);
+  };
+
+  const callAlg = async (flag = false) => {
+    if (flag) {
+      dispatch(motifActions.setMotif([]));
+      return;
+    }
+    submiteAction("RunAlg");
     let sh = shrinkMatrix(sequenceMatrix);
 
     let foundMotifs = findMotif(sh, motifExclusionArray);
 
     let OccurrenceOfMotifs = extractMotifsOccurrence(foundMotifs);
+    console.log("Occu in runAlg", OccurrenceOfMotifs);
     let baseScoreArray = await getBaseScores(OccurrenceOfMotifs);
     let scoreArray = calculateScore(baseScoreArray, OccurrenceOfMotifs);
+
     setAlgSequence_andGlobalState(foundMotifs, scoreArray);
   };
 
@@ -72,6 +95,7 @@ export default function RunAlgorythmBtn() {
     console.log("foundMotids in runAlg", foundMotifs);
     for (const el of foundMotifs) {
       if (temp.includes(el["motif"])) continue;
+      console.log("this is el", el, scoreArray);
       // search for the score
       for (const s of scoreArray) {
         if (s[0] === el["motif"]) {

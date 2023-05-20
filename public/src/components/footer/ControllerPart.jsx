@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import axios from "axios";
 import { seqGenerator } from "../../utils/SequenceHandler";
+import { motifActions } from "../../store/logic/motifsSlice";
 
 function ControllerPart(props) {
   const currentIndex = useSelector((state) => state.sequence.currentIndex);
@@ -48,6 +49,8 @@ function ControllerPart(props) {
         break;
       case "delete":
         dispatch(sequenceAction.deleteCurrentSequence());
+        dispatch(motifActions.setExcludeMotifEmpty());
+
         break;
       case "right":
         dispatch(sequenceAction.shiftToRightSequence());

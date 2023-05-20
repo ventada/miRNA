@@ -47,6 +47,12 @@ const searchMotifs = (
 // a is the motif matrix
 export const extractMotifsOccurrence = (a) => {
   let temp = {};
+  if (a.length == 1) {
+    temp[a[0].motif] = [];
+    temp[a[0].motif].push(a[0].seq1);
+    temp[a[0].motif].push(a[0].seq2);
+    return temp;
+  }
   for (let i = 0; i < a.length; i++) {
     for (let j = 0; j < a.length; j++) {
       if (i == j) continue;
