@@ -6,6 +6,12 @@ import { sequenceAction } from "../../store/logic/sequenceSlice";
 import { userActions } from "../../store/logic/userSlice";
 import { motifActions } from "../../store/logic/motifsSlice";
 
+//import Icons
+import Bad from "./icons/bad.svg";
+import Good from "./icons/good.svg";
+import NotBad from "./icons/notbad.svg";
+import Perfect from "./icons/perfect.svg";
+
 // import { sequenceAction } from "../../store/logic/sequenceSlice";
 import axios from "axios";
 
@@ -105,12 +111,33 @@ export default function AlgSequence({
         onMouseLeave={() => onHoverExitHandler()}
         className="sequence"
       >
+        {parseInt(score) >= 40 ? <img src={Perfect} /> : ""}
+        {parseInt(score) >= 30 && parseInt(score) < 40 ? (
+          <img src={Good} />
+        ) : (
+          ""
+        )}
+        {parseInt(score) >= 20 && parseInt(score) < 30 ? (
+          <img src={NotBad} />
+        ) : (
+          ""
+        )}
+        {parseInt(score) < 20 ? <img src={Bad} /> : ""}
         {sequenceGenerator(sequence)}
       </div>
       <div className="alg-detail">
-        <span style={{ fontSize: "12px" }}>score: {parseInt(score)}</span>
-        <img onClick={() => onClickHandler("confirm")} src={ConfirmBtn} />
-        <img onClick={() => onClickHandler("reject")} src={CancelBtn} />
+        {/* <span style={{ fontSize: "12px" }}>score: {parseInt(score)}</span> */}
+
+        <img
+          onClick={() => onClickHandler("confirm")}
+          alt="confirm"
+          src={ConfirmBtn}
+        />
+        <img
+          onClick={() => onClickHandler("reject")}
+          alt="reject"
+          src={CancelBtn}
+        />
       </div>
       <ToastContainer />
     </div>

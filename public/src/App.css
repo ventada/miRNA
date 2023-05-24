@@ -86,6 +86,10 @@ main .sequence {
   gap: 10px;
   transition: all 0.3s ease;
 }
+.sequence img {
+  width: 25px;
+  height: 25px;
+}
 .sequence.selected {
   background-color: #96909078;
   padding: 8px;
