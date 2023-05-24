@@ -1,0 +1,7 @@
+ netstat -nlp | grep :8080
+ kill pid
+ pm2 logs "myAppName"
+ pm2 start "npm run dev" --name myAppName
+
+
+ 

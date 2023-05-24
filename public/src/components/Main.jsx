@@ -66,12 +66,12 @@ export default function Main() {
 
   return (
     <main>
-      <RunAlgorythmBtn />
       {seqArray.map((seq, index) => (
         <Sequence sequence={seq} key={index} id={index + 1} />
       ))}
 
-      <h1>{currentIndex}</h1>
+      {/* <h1>{currentIndex}</h1> */}
+      <RunAlgorythmBtn />
       {/* <KeyEventHandler /> */}
     </main>
   );

@@ -25,7 +25,20 @@ export default function KeyEventHandler() {
   };
   const handleKeysEvent = useCallback((e) => {
     let code = e.code;
-    if (code !== "ArrowDown" && code !== "ArrowUp") {
+
+    if (
+      code !== "ArrowDown" &&
+      code !== "ArrowUp" &&
+      [
+        "ArrowRight",
+        "ArrowLeft",
+        "ShiftRight",
+        "KeyW",
+        "KeyS",
+        "KeyE",
+        "Delete",
+      ].includes(code)
+    ) {
       dispatch(sequenceAction.isSequenceChanged(true));
     }
     switch (code) {
@@ -45,10 +58,14 @@ export default function KeyEventHandler() {
         dispatch(sequenceAction.shiftToLeftSequence());
 
         break;
-      case "Enter":
+      case "ShiftRight":
         submiteAction("add");
         getRandomsequence();
         break;
+      // case "Enter":
+      //   submiteAction("add");
+      //   getRandomsequence();
+      //   break;
 
       case "KeyW":
         submiteAction("up");
@@ -59,10 +76,10 @@ export default function KeyEventHandler() {
         submiteAction("down");
         dispatch(sequenceAction.swapWithBottomRow());
         break;
-      // case "KeyR":
-      //   submiteAction("reverse");
-      //   dispatch(sequenceAction.reverseCurrentSequence());
-      //   break;
+      case "KeyE":
+        submiteAction("reverse");
+        dispatch(sequenceAction.reverseCurrentSequence());
+        break;
       case "Delete":
         submiteAction("Delete");
         dispatch(sequenceAction.deleteCurrentSequence());
